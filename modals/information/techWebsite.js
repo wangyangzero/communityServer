@@ -7,6 +7,10 @@ let techWebsiteSchema = new Schema({
         type: String,
         required: true // 必须有
     },
+    href: {
+        type: String,
+        required: true
+    },
     tag: [
         {
            tagName: {
@@ -28,6 +32,7 @@ let techWebsites = {data: []};
 
 techWebsites.data[0] = new techWebsite({
     name: '菜鸟教程--学的不仅仅是技术，更是梦想',
+    href: 'http://www.runoob.com/',
     tag:[
         {
             tagName: '前端',
@@ -46,6 +51,7 @@ techWebsites.data[0] = new techWebsite({
 
 techWebsites.data[1] = new techWebsite({
     name: '阮一峰的网络日志--阿里前端大牛的个人技术博客',
+    href: 'http://www.ruanyifeng.com',
     tag:[
         {
             tagName: '前端',
@@ -63,7 +69,8 @@ techWebsites.data[1] = new techWebsite({
 });
 
 techWebsites.data[2] = new techWebsite({
-    name: '廖雪峰的官方网站--全栈工程师叫你学python，Java《区块链',
+    name: '廖雪峰的官方网站--全栈工程师叫你学python，Java,区块链',
+    href: 'https://www.liaoxuefeng.com',
     tag:[
         {
             tagName: 'Python',
@@ -78,6 +85,7 @@ techWebsites.data[2] = new techWebsite({
 
 techWebsites.data[3] = new techWebsite({
     name: 'Github--全球最常用的面向开源及私有软件项目的托管平台',
+    href: 'https://github.com',
     tag:[
         {
             tagName: '代码仓库',
@@ -88,6 +96,7 @@ techWebsites.data[3] = new techWebsite({
 
 techWebsites.data[4] = new techWebsite({
     name: 'React中文网站--从零开始的前端框架学习之旅',
+    href: 'https://react.docschina.org/',
     tag:[
         {
             tagName: 'React',
@@ -98,6 +107,7 @@ techWebsites.data[4] = new techWebsite({
 
 techWebsites.data[5] = new techWebsite({
     name: 'Vue中文网站--从零开始的前端框架学习之旅',
+    href: 'https://cn.vuejs.org/',
     tag:[
         {
             tagName: 'Vue',
@@ -107,7 +117,8 @@ techWebsites.data[5] = new techWebsite({
 });
 
 techWebsites.data[6] = new techWebsite({
-    name: 'Aguilar中文网站--从零开始的前端框架学习之旅',
+    name: 'Angular中文网站--从零开始的前端框架学习之旅',
+    href: 'https://docs.angularjs.org/',
     tag:[
         {
             tagName: 'Aguilar',
