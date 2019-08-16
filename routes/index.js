@@ -3,9 +3,6 @@
  * @type {*|void}
  */
 const router = require('koa-router')();
-const mongoose = require('mongoose')
-const baseUrl = 'mongodb://community:123456@192.168.0.115:27000/community';
-mongoose.connect(baseUrl,{useNewUrlParser: true});
 const techWebsites = require('../modals/information/techWebsite');
 const fireInfo = require('../modals/information/fireInfo');
 const newInfo = require('../modals/information/newInfo');
