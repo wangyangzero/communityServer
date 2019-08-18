@@ -23,18 +23,6 @@ let fireInfoSchema = new Schema({
                 type: String,
                 required: true,
             },
-            like: {
-                type: String,
-                required: true,
-            },
-            star: {
-                type: String,
-                required: true,
-            },
-            comment: {
-                type: String,
-                required: true,
-            },
             tag: {
                 type: String,
                 required: true,

@@ -19,9 +19,9 @@ let newInfoSchema = new Schema({
             type: String,
             required: true,
         },
-        comment: {
-            type: String,
-            required: true,
+        content:{
+            type:String,
+            required:true,
         },
         tag: {
             type: String,

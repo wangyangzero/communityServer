@@ -5,6 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const passport = require('koa-passport')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -23,6 +24,11 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
+// 实时监听passport
+require('./config/passport')(passport);
 
 // logger
 app.use(async (ctx, next) => {
