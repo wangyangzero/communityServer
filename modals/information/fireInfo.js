@@ -13,11 +13,9 @@ let fireInfoSchema = new Schema({
             },
             avatar: {
                 type: String,
-                required: true,
             },
             description: {
                 type: String,
-                required: true,
             },
             content: {
                 type: String,
@@ -25,11 +23,9 @@ let fireInfoSchema = new Schema({
             },
             tag: {
                 type: String,
-                required: true,
             },
             tagColor: {
                 type: String,
-                required: true,
             }
         }
 
