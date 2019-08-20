@@ -65,7 +65,7 @@ router.post('/resource/fireInfo/delete',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '删除热点新闻成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要删除的新闻不存在'
     }
@@ -91,7 +91,7 @@ router.post('/resource/fireInfo/update',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '修改热点新闻成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要修改的新闻不存在'
     }
@@ -137,7 +137,7 @@ router.post('/resource/newInfo/delete',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '删除新闻成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要删除的新闻不存在'
     }
@@ -163,7 +163,7 @@ router.post('/resource/newInfo/update',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '修改新闻成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要修改的新闻不存在'
     }

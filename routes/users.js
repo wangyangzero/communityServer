@@ -16,12 +16,17 @@ router.get('/user/blog',async ctx => {
         console.log('加载数据失败')
     }
 });
+router.options('*',async ctx =>{
+    ctx.status = 200;
+    ctx.set('Access-Control-Allow-Headers','Authorization');
+    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+});
 
 //用户留言板
 router.post('/user/message',async ctx =>{
     const msg = ctx.request.body;
     const newMsg = new message({
-        username: msg.username,
+        nickname: msg.nickname,
         avatar: msg.avatar,
         msg: msg.msg,
         date: msg.date,
@@ -39,7 +44,7 @@ router.post('/user/register',async ctx => {
     const findResult = await userInfo.find({username:users.username});
     //判断用户是否已存在
     if(findResult.length > 0) {
-        ctx.status = 500;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = {
             error: '用户名已经被使用',
@@ -72,7 +77,7 @@ router.post('/user/login',async ctx => {
     const user = findResult[0];
     //判断用户是否存在
     if(findResult.length === 0){
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = {
             error: '用户不存在',
@@ -93,7 +98,7 @@ router.post('/user/login',async ctx => {
                 token: "Bearer " + token,
             };
         } else{
-            ctx.status = 404;
+            ctx.status = 200;
             ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
             ctx.body = {
                 error: '密码错误',
@@ -105,6 +110,8 @@ router.post('/user/login',async ctx => {
 
 //登录成功返回用户数据
 router.get('/user/current',passport.authenticate('jwt', { session: false }),async ctx => {
+    ctx.status = 200;
+    ctx.set('Access-Control-Allow-Headers','Authorization');
     ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     ctx.body = {
         id: ctx.state.user.id,
@@ -138,7 +145,7 @@ router.post('/user/delete',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '删除用户成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要删除的用户不存在'
     }
@@ -160,7 +167,7 @@ router.post('/user/update',async ctx =>{
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '修改用户成功'
     } else {
-        ctx.status = 404;
+        ctx.status = 200;
         ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         ctx.body = '抱歉，您要修改的用户不存在'
     }
