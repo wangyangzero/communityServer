@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 let fireInfoSchema = new Schema({
     data:
-        {    href: {
+        {
+            href: {
                 type: String,
                 required: true,
             },

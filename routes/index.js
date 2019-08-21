@@ -75,6 +75,7 @@ router.post('/resource/fireInfo/delete',async ctx =>{
 router.post('/resource/fireInfo/update',async ctx =>{
     const findResult = await fireInfo.find({_id:ctx.request.body.id});
     const updatef = ctx.request.body;
+    console.log(updatef)
     if(findResult.length > 0){
         await fireInfo.findByIdAndUpdate(updatef.id,{
             data:{
