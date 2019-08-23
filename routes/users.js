@@ -158,7 +158,7 @@ router.post('/user/update',async ctx =>{
     if(findResult.length > 0){
         await userInfo.findByIdAndUpdate(updateu.id,{
             username: updateu.username,
-            password: updateu.password,
+            password: md5(updateu.password),
             nickname: updateu.nickname,
             avatar: updateu.avatar,
             Authorization: updateu.Authorization,

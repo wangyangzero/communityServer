@@ -36,6 +36,20 @@ router.get('/resource/fireInfo', async ctx => {
     }
 });
 
+//查询最热信息
+router.post('/resource/fireInfo/check',async ctx =>{
+    const findResult = await fireInfo.find({_id:ctx.request.body.id});
+    if(findResult.length > 0){
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = findResult
+    } else {
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '抱歉，您要查询的新闻不存在'
+    }
+});
+
 //添加最热信息
 router.post('/resource/fireInfo/add',async ctx =>{
     const addf = ctx.request.body;
@@ -75,7 +89,6 @@ router.post('/resource/fireInfo/delete',async ctx =>{
 router.post('/resource/fireInfo/update',async ctx =>{
     const findResult = await fireInfo.find({_id:ctx.request.body.id});
     const updatef = ctx.request.body;
-    console.log(updatef)
     if(findResult.length > 0){
         await fireInfo.findByIdAndUpdate(updatef.id,{
             data:{
@@ -106,6 +119,20 @@ router.get('/resource/newInfo', async ctx => {
         ctx.body = data;
     }catch (e) {
         console.log('加载数据失败')
+    }
+});
+
+//查询最热信息
+router.post('/resource/newInfo/check',async ctx =>{
+    const findResult = await newInfo.find({_id:ctx.request.body.id});
+    if(findResult.length > 0){
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = findResult
+    } else {
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '抱歉，您要查询的新闻不存在'
     }
 });
 
