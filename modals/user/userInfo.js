@@ -17,11 +17,12 @@ let userInfoSchema = new Schema({
     avatar:{
         type: String,
     },
-    message:[
+    message:
         {
             type: String,
+            default: '这个人很懒，时间都被代码占用了'
         }
-    ],
+    ,
     Authorization:{
         type: Number,
         default: 0

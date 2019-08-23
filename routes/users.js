@@ -1,21 +1,11 @@
 const router = require('koa-router')();
-const blogs = require('../modals/user/blog');
 const userInfo = require('../modals/user/userInfo');
 const message = require('../modals/user/messageBoard');
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const passport = require('koa-passport');
-//废弃的博客接口
-router.get('/user/blog',async ctx => {
-    try {
-        const data = await blogs.find({});
-        ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-        ctx.body = data;
-    }catch (e) {
-        console.log('加载数据失败')
-    }
-});
+
+//处理预请求
 router.options('*',async ctx =>{
     ctx.status = 200;
     ctx.set('Access-Control-Allow-Headers','Authorization');
@@ -29,13 +19,51 @@ router.post('/user/message',async ctx =>{
         nickname: msg.nickname,
         avatar: msg.avatar,
         msg: msg.msg,
-        date: msg.date,
     });
     await newMsg.save();
     ctx.status = 200;
     ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-    ctx.body = newMsg;
+    ctx.body = '发送留言成功';
 });
+
+//删除留言
+router.post('/user/message/delete',async ctx =>{
+    const findResult = await  message.find({_id:ctx.request.body.id});
+    if(findResult.length > 0){
+        await message.deleteOne({_id:ctx.request.body.id});
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '删除留言成功';
+    } else {
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '删除留言失败';
+    }
+});
+
+//获取用户留言板
+router.post('/user/messageList',async ctx =>{
+    const findResult = await  message.find({nickname:ctx.request.body.nickname});
+    if(findResult.length > 0){
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = findResult;
+    } else {
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '';
+    }
+});
+
+//获取留言板列表
+router.get('/messageList',async ctx =>{
+    const data = await  message.find({});
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = data;
+
+});
+
 
 //注册用户
 router.post('/user/register',async ctx => {
@@ -158,7 +186,7 @@ router.post('/user/update',async ctx =>{
     if(findResult.length > 0){
         await userInfo.findByIdAndUpdate(updateu.id,{
             username: updateu.username,
-            password: md5(updateu.password),
+            password: updateu.password === findResult[0].password ? findResult[0].password : md5(updateu.password),
             nickname: updateu.nickname,
             avatar: updateu.avatar,
             Authorization: updateu.Authorization,

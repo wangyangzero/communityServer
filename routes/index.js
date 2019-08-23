@@ -197,6 +197,7 @@ router.post('/resource/newInfo/update',async ctx =>{
     }
 });
 
+//获取图书馆信息
 router.get('/laboratory', async ctx =>{
     try {
         const data = await laboratory.find({});
@@ -208,5 +209,19 @@ router.get('/laboratory', async ctx =>{
     }
 });
 
+//新闻查询
+router.post('/news/check', async ctx => {
+    const findResult1 = await fireInfo.find({_id:ctx.request.body.id});
+    const findResult2 = await newInfo.find({_id:ctx.request.body.id});
+    if(findResult1.length > 0 || findResult2.length > 0){
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = findResult1.length > 0 ? findResult1[0] : findResult2[0];
+    } else{
+        ctx.status = 200;
+        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.body = '抱歉，您要打开的新闻不存在'
+    }
+});
 
 module.exports = router;
