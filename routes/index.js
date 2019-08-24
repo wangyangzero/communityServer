@@ -16,7 +16,7 @@ router.get('/resource/website', async ctx => {
     try {
         const data = await techWebsites.find({});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = data;
     }catch (e) {
         console.log('加载数据失败')
@@ -29,7 +29,7 @@ router.get('/resource/fireInfo', async ctx => {
     try {
         const data = await fireInfo.find({});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = data;
     }catch (e) {
         console.log('加载数据失败')
@@ -41,11 +41,11 @@ router.post('/resource/fireInfo/check',async ctx =>{
     const findResult = await fireInfo.find({_id:ctx.request.body.id});
     if(findResult.length > 0){
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = findResult
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要查询的新闻不存在'
     }
 });
@@ -66,7 +66,7 @@ router.post('/resource/fireInfo/add',async ctx =>{
     });
     await newFireInfo.save();
     ctx.status = 200;
-    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    ctx.set('Access-Control-Allow-Origin', '*');
     ctx.body = '添加热点新闻成功';
 });
 
@@ -76,11 +76,11 @@ router.post('/resource/fireInfo/delete',async ctx =>{
     if(findResult.length > 0){
         await fireInfo.deleteOne({_id:ctx.request.body.id});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '删除热点新闻成功'
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要删除的新闻不存在'
     }
 });
@@ -102,11 +102,11 @@ router.post('/resource/fireInfo/update',async ctx =>{
             }
         });
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '修改热点新闻成功'
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要修改的新闻不存在'
     }
 });
@@ -115,7 +115,7 @@ router.get('/resource/newInfo', async ctx => {
     try {
         const data = await newInfo.find({});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = data;
     }catch (e) {
         console.log('加载数据失败')
@@ -127,11 +127,11 @@ router.post('/resource/newInfo/check',async ctx =>{
     const findResult = await newInfo.find({_id:ctx.request.body.id});
     if(findResult.length > 0){
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = findResult
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要查询的新闻不存在'
     }
 });
@@ -152,7 +152,7 @@ router.post('/resource/newInfo/add',async ctx =>{
     });
     await newNewInfo.save();
     ctx.status = 200;
-    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    ctx.set('Access-Control-Allow-Origin', '*');
     ctx.body = '添加新闻成功';
 });
 
@@ -162,11 +162,11 @@ router.post('/resource/newInfo/delete',async ctx =>{
     if(findResult.length > 0){
         await newInfo.deleteOne({_id:ctx.request.body.id});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '删除新闻成功'
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要删除的新闻不存在'
     }
 });
@@ -188,11 +188,11 @@ router.post('/resource/newInfo/update',async ctx =>{
             }
         });
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '修改新闻成功'
     } else {
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要修改的新闻不存在'
     }
 });
@@ -202,7 +202,7 @@ router.get('/laboratory', async ctx =>{
     try {
         const data = await laboratory.find({});
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = data;
     }catch (e) {
         console.log('加载数据失败')
@@ -215,11 +215,11 @@ router.post('/news/check', async ctx => {
     const findResult2 = await newInfo.find({_id:ctx.request.body.id});
     if(findResult1.length > 0 || findResult2.length > 0){
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = findResult1.length > 0 ? findResult1[0] : findResult2[0];
     } else{
         ctx.status = 200;
-        ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ctx.set('Access-Control-Allow-Origin', '*');
         ctx.body = '抱歉，您要打开的新闻不存在'
     }
 });
