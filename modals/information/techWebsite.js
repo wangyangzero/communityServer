@@ -30,7 +30,6 @@ let techWebsiteSchema = new Schema({
 
 let techWebsite = mongoose.model('techWebsites', techWebsiteSchema);
 
-
 module.exports = techWebsite;
 
 

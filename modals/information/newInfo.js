@@ -34,5 +34,4 @@ let newInfoSchema = new Schema({
 
 let newInfo = mongoose.model('newInfo',newInfoSchema);
 
-
 module.exports = newInfo;

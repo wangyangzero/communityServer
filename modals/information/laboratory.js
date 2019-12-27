@@ -34,5 +34,4 @@ let laboratorySchema = new Schema({
 
 let laboratory = mongoose.model('laboratory',laboratorySchema);
 
-
 module.exports = laboratory;

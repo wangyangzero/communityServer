@@ -31,5 +31,4 @@ let userInfoSchema = new Schema({
 
 let userInfo = mongoose.model('userInfo',userInfoSchema);
 
-
 module.exports = userInfo;

@@ -34,5 +34,4 @@ let fireInfoSchema = new Schema({
 
 let fireInfo = mongoose.model('fireInfo',fireInfoSchema);
 
-
 module.exports = fireInfo;
